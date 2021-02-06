@@ -1,0 +1,12 @@
+# Eclipse
+.classpath
+.project
+.factorypath
+**/.apt_generated/*
+**/.settings/*
+**/bin/*
+.springBeans
+**/.sass-cache/*
+
+# Maven
+target/
