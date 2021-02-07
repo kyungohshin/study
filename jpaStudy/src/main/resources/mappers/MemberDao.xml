@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="dao.MemberDao">
+	<insert id="insertMember" parameterType="dto.Member">
+		insert into member (id, age, lobbyte, lobstring, membertype, username, regdate, team_id) 
+		values (#{id}, #{age}, #{lobbyte}, #{lobstring}, #{membertype}, #{username}, #{regdate}, #{team_id})
+	</insert>
+	
+	<select id="selectMember" resultType="dto.Member">
+		select * FROM member WHERE id = #{id}
+	</select>
+	
+	<select id="selectMemberList" resultType="dto.Member">
+		select * FROM member
+	</select>
+		
+	<select id="selectMemberWithAge" resultType="dto.Member">
+		select * FROM member WHERE id = #{id} and age = #{age}
+	</select>
+	
+	<select id="deleteMember">
+		delete FROM member WHERE id = #{id}
+	</select>
+	
+</mapper>
