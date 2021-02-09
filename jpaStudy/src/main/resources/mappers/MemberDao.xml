@@ -25,4 +25,8 @@
 		delete FROM member WHERE id = #{id}
 	</select>
 	
+	<select id="selectMemberJoinTeam"  resultType="dto.Member">
+		select * from member m join team t on m.team_id = t.id where t.id = #{id} order by id
+	</select>	
+	
 </mapper>

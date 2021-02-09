@@ -15,10 +15,11 @@ import lombok.Setter;
 public class Member {
 	private int id;
 	private int age;
-	private String lobByte;
-	private String lobString;
-	private String memberType;
-	private String userName;
-	private java.sql.Timestamp regDate;
+	private String lobbyte;
+	private String lobstring;
+	private String membertype;
+	private String username;
+	private java.sql.Timestamp regdate;
 	private int team_id;
+
 }

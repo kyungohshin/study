@@ -3,6 +3,8 @@ package jpaStudy.dbTest;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +40,7 @@ public class MemberDaoTest {
 		vo.setId(5);
 		vo.setAge(29);
 		vo.setTeam_id(2);
-		vo.setUserName("shin");
+		vo.setUsername("shin");
 
 		dao.insertMember(vo);
 	}
@@ -53,5 +55,12 @@ public class MemberDaoTest {
 	public void testReadWithTeam() throws Exception {
 		Member m = dao.selectMemberWithAge(3, 30);
 		assertThat(m != null, is(true));
+	}
+
+	@Test
+	public void testJoin() throws Exception {
+		List<Member> m = dao.selectMemberJoinTeam(1);
+		assertThat(m.size(), is(2));
+		assertThat(m.get(1).getAge(), is(28));
 	}
 }
