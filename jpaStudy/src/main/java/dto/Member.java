@@ -4,7 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -41,6 +43,8 @@ public class Member {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regdate;
 
-	private String team_id;
+	@ManyToOne
+	@JoinColumn(name = "TEAM_ID")
+	private Team team;
 
 }

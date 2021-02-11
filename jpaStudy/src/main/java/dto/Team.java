@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -28,8 +27,6 @@ public class Team {
 
 	private String name;
 
-	@OneToMany
-	@JoinColumn(name = "team_id") // Member테이블의 외래키
-	// 외래키를 가진쪽을 주인관계로 설정하면 새로운컬럼이 생김
+	@OneToMany(mappedBy = "team")
 	private List<Member> member = new ArrayList<>();
 }
