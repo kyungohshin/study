@@ -1,4 +1,4 @@
-package jpaStudy.dbTest;
+package jpaStudy;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

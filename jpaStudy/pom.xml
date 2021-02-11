@@ -44,18 +44,6 @@
 	    <scope>test</scope>
 	</dependency>
 
-	<!-- Mybatis -->
-	<dependency> <!-- jdbc로 직접할수있는데 그냥 mybatis사용 -->
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis</artifactId>
-		<version>3.2.8</version>
-	</dependency>
-	<dependency> <!-- mybatis와 스프링을 연계하기위한 접착제 -->
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis-spring</artifactId>
-		<version>1.2.2</version>
-	</dependency>		
-
 	<dependency> <!-- 스프링에서 제공하는 jdbc연결 모듈(안써도되는데 스프링이 제공해주는거 쓰고싶음 dataSource..) -->
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-jdbc</artifactId>
@@ -67,7 +55,14 @@
 		<artifactId>spring-test</artifactId>
 		<version>${org.springframework-version}</version>
 	</dependency>
-					  
+					 
+	<!-- JPA -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>5.3.7.Final</version>
+	</dependency>
+						  
   </dependencies>
   
 </project>

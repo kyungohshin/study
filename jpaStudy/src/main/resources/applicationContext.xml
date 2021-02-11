@@ -19,19 +19,19 @@
 		<property name="password" value=""/>
 	</bean>
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> <!-- spring-mybatis의 핵심 -->
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> spring-mybatis의 핵심
 		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:mappers/**/*Dao.xml"></property> <!-- mybatis도 spring처럼 프레임워크이므로 applicationContext같은게 필요함 그게 이거 -->
-	</bean>
+		<property name="mapperLocations" value="classpath:mappers/**/*Dao.xml"></property> mybatis도 spring처럼 프레임워크이므로 applicationContext같은게 필요함 그게 이거
+	</bean> -->
 	
 <!-- 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"> DAO인터페이스의 구현하기위해서 필요, db와 직접연결 및 close도 담당
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg> mybatis mapper 주입을 사용하므로 직접 sqlSession을 사용하는 dao를 만들 필요가없으므로 삭제 
 	</bean> -->
 
     <!-- mybatis configuration -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> <!-- sqlSession을 사용하는 dao를 만들필요가없이 다른 빈에서 직접주입. 하나하나 다 주입해줄수가없으므로 경로를 주고 scan함 -->
-        <property name="basePackage" value="dao"/> <!-- dao인터페이스의 구현체를 만들지않아도됨. 알아서 mybatis가 매핑시켜줌. 다만 실제구현체가있다면 에러(2개이상이니까?) -->
-    </bean>	
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> sqlSession을 사용하는 dao를 만들필요가없이 다른 빈에서 직접주입. 하나하나 다 주입해줄수가없으므로 경로를 주고 scan함
+        <property name="basePackage" value="dao"/> dao인터페이스의 구현체를 만들지않아도됨. 알아서 mybatis가 매핑시켜줌. 다만 실제구현체가있다면 에러(2개이상이니까?)
+    </bean>	 -->
 		
 </beans>
 	

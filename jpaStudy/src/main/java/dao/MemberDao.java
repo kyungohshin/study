@@ -2,8 +2,6 @@ package dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import dto.Member;
 
 /**
@@ -16,13 +14,13 @@ import dto.Member;
 public interface MemberDao {
 	public void insertMember(Member vo) throws Exception;
 
-	public Member selectMember(@Param("id") int id) throws Exception;
+	public Member selectMember(int id) throws Exception;
 
 	public List<Member> selectMemberList() throws Exception;
 
-	public Member selectMemberWithAge(@Param("id") int id, @Param("age") int age) throws Exception;
+	public Member selectMemberWithAge(int id, int age) throws Exception;
 
-	public void deleteMember(@Param("id") int id) throws Exception;
+	public void deleteMember(int id) throws Exception;
 
-	public List<Member> selectMemberJoinTeam(@Param("id") int team_id) throws Exception;
+	public List<Member> selectMemberJoinTeam(int team_id) throws Exception;
 }
