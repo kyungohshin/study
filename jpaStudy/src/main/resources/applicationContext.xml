@@ -4,19 +4,34 @@
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"	
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd">
 	
-	<context:component-scan base-package="dao" />
-	
- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+  	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="org.h2.Driver"/>
 		<property name="url" value="jdbc:h2:tcp://localhost/~/test"/>		
 		<property name="username" value="sa"/>
 		<property name="password" value=""/>
+	</bean> <!-- 어떻게 한개만 보는지 잘모르겠음 / persistent.xml도 필요한데 실제로는 얘만씀 -->
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="dataSource"/> 
+		 <property name="jpaVendorAdapter"> 
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
+				<property name="generateDdl" value="false" /> 
+			</bean> 
+		</property> 
+	</bean>
+	
+	<jpa:repositories base-package="repository" /> <!-- 해당 패키지스캔하여 @Repository들을 bean으로 등록 -->
+
+ 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory" /> 
 	</bean>
 
 <!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> spring-mybatis의 핵심
