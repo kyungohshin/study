@@ -30,6 +30,7 @@
 	
 	<jpa:repositories base-package="repository" /> <!-- 해당 패키지스캔하여 @Repository들을 bean으로 등록 -->
 
+	<!-- 단일 팩토리를 유지하면서, 스레드별로 em을 제공하는 역할 -->
  	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
 		<property name="entityManagerFactory" ref="entityManagerFactory" /> 
 	</bean>

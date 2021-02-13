@@ -3,6 +3,7 @@ package dto;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -43,7 +44,7 @@ public class Member {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regdate;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TEAM_ID")
 	private Team team;
 
