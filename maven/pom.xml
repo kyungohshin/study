@@ -23,6 +23,13 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+	<dependency>
+	    <groupId>org.apache.tomcat</groupId>
+	    <artifactId>tomcat-jsp-api</artifactId>
+	    <version>9.0.4</version>
+	</dependency>
+    
   </dependencies>
   
   <build>
