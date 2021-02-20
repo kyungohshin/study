@@ -1,7 +1,8 @@
-package shin.kafka;
+package shin.kafka.producer;
 
 import java.util.Properties;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -12,11 +13,13 @@ import org.apache.kafka.common.serialization.StringSerializer;
  */
 public class SimpleProducer {
 	private static String TOPIC_NAME = "test";
+	private static String GROUP_ID = "testgroup";
 	private static String BOOTSTRAP_SERVERS = "193.123.251.231:9092";
 
 	public static void main(String[] args) {
 		Properties configs = new Properties();
 		configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+		configs.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
 		configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName()); // key, value를 직렬화해서 카프카에 보내기 위함
 

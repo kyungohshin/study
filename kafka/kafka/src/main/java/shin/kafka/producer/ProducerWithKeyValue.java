@@ -1,4 +1,4 @@
-package shin.kafka;
+package shin.kafka.producer;
 
 import java.util.Properties;
 
