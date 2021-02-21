@@ -33,7 +33,7 @@ public class ConsumerWorker implements Runnable {
 				}
 				consumer.commitSync();
 			}
-		} catch (WakeupException e) {
+		} catch (WakeupException e) { // wakeup실행시, poll할때 Exception처리
 			System.out.println(threadName + " trigger WakeupException");
 		} finally {
 			consumer.commitSync();
