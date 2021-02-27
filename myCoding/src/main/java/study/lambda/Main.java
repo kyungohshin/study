@@ -1,5 +1,7 @@
 package study.lambda;
 
+import java.util.stream.Stream;
+
 /**
  *
  *
@@ -55,6 +57,7 @@ public class Main {
 		f5.max("3", "6");
 
 		repeatMessage("hi", 100);
+		Stream.of();
 	}
 
 	public static void main(String[] args) {
