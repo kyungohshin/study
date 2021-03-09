@@ -86,9 +86,12 @@ public class Main {
 		boolean s7 = list.stream().parallel().noneMatch(s -> s.startsWith("a")); // 모든 요소가
 		                                                                         // predicate와
 		                                                                         // 일치하지않으면 true
+
+		Optional<String> s8 = list.stream().reduce((x, y) -> x + y);
+
 		System.out.println(s1.get());
 		System.out.println(s5);
-		System.out.println(s7);
+		System.out.println("s8:" + s8.get());
 	}
 
 	public void result2() {
@@ -98,8 +101,8 @@ public class Main {
 		String[] o2 = list.stream().toArray(String[]::new);
 
 		List<String> l1 = list.stream().collect(Collectors.toList()); // 스트림을 리스트로 모으고 싶을때 사용
-		List<String> l2 = list.stream().collect(Collectors.toCollection(ArrayList::new)); // 이런식으로도
-		                                                                                  // 가능
+		ArrayList<String> l2 = list.stream().collect(Collectors.toCollection(ArrayList::new)); // 이런식으로도
+		                                                                                       // 가능
 		Set<String> l3 = list.stream().collect(Collectors.toSet());
 		TreeSet<String> l4 = list.stream().collect(Collectors.toCollection(TreeSet::new));
 
@@ -176,15 +179,29 @@ public class Main {
 		                Collectors.groupingBy(Person::getName, Collectors.mapping(Person::getName,
 		                        Collectors.minBy(Comparator.comparing(String::length)))));
 
-		// 이런식으로 mapping을 거치지않고 키값 그자체를 처리하는건 안되는거같음
+		// 이런식으로 mapping을 거치지않으면 String이 뭔지모름
 //		list2.stream().collect(
 //		        Collectors.groupingBy(Person::getName, Collectors.minBy(Comparator.comparing(String::length))));
+
+		// 그룹핑이나 맵핑함수가 in, long, double을 리턴한다면 요소들의 요약통계 객체(SummaryStatistics)안으로 모을수있다.
+		Map<String, IntSummaryStatistics> m11 =
+		        list2.stream().collect(
+		                Collectors.groupingBy(Person::getName, Collectors.summarizingInt(Person::getAge)));
+		m11.get("shin").getMax();
+
+		// 이름 기준으로 그룹핑한 요소들의 ..를 ,로 합침
+		Map<String, String> m12 =
+		        list2.stream().collect(
+		                Collectors.groupingBy(Person::getName,
+		                        Collectors.mapping(Person::getName, Collectors.joining(", "))));
+
 	}
 
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.setup();
 		m.transform();
+		m.result1();
 		m.result2();
 	}
 
