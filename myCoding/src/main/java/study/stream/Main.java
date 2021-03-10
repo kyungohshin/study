@@ -11,9 +11,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -87,11 +90,8 @@ public class Main {
 		                                                                         // predicate와
 		                                                                         // 일치하지않으면 true
 
-		Optional<String> s8 = list.stream().reduce((x, y) -> x + y);
-
 		System.out.println(s1.get());
 		System.out.println(s5);
-		System.out.println("s8:" + s8.get());
 	}
 
 	public void result2() {
@@ -197,12 +197,43 @@ public class Main {
 
 	}
 
+	public void result3() {
+		Optional<String> s1 = list.stream().reduce((x, y) -> x + y);
+//		System.out.println(s1.get());
+
+		int[] array = { 1, 2, 3, 4, 5, 6 };
+
+		// Stream<int> 스트림 생성
+		IntStream stream1 = IntStream.of(1, 2, 3, 4, 5, 6);
+
+		// 배열로도 Stream<int> 스트림생성가능
+		IntStream stream2 = Arrays.stream(array);
+
+		IntStream stream3 = IntStream.range(0, 10); // 10제외
+		IntStream stream4 = IntStream.rangeClosed(0, 10); // 10포함
+		stream4.forEach(System.out::println);
+
+		// 객체스트림 -> 기본타입스트림
+		IntStream stream5 = list.stream().mapToInt(String::length);
+		stream5.forEach(System.out::println);
+
+		// 기본타입스트림 -> 객체스트림
+		Stream<Integer> integers1 = stream5.boxed();
+
+		// 객체스트림
+		Stream<Double> double1 = Stream.generate(Math::random).limit(100);
+		// 기본타입스트림
+		DoubleStream double2 = new Random().doubles();
+
+	}
+
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.setup();
-		m.transform();
-		m.result1();
-		m.result2();
+//		m.transform();
+//		m.result1();
+//		m.result2();
+		m.result3();
 	}
 
 }
