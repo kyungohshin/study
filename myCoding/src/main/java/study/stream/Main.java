@@ -29,11 +29,24 @@ import java.util.stream.Stream;
 public class Main {
 
 	List<String> list = new ArrayList<>();
+	List<Person> list2 = new ArrayList<>();
 
 	public void setup() {
 		list.add("affbasbd");
 		list.add("bvbasbdasdabasb");
 		list.add("acffbasbd1233f4321d");
+		list.add("msiens");
+		list.add("msiena");
+		list.add("msienb");
+
+		Person p1 = Person.builder().id(1).name("shin").age(30).build();
+		Person p2 = Person.builder().id(2).name("kim").age(21).build();
+		Person p3 = Person.builder().id(3).name("kwon").age(53).build();
+		Person p4 = Person.builder().id(4).name("shin").age(8).build();
+		list2.add(p1);
+		list2.add(p2);
+		list2.add(p3);
+		list2.add(p4);
 	}
 
 	public void generate() {
@@ -122,16 +135,6 @@ public class Main {
 		System.out.println(max);
 
 		///////////
-
-		List<Person> list2 = new ArrayList<>();
-		Person p1 = Person.builder().id(1).name("shin").age(30).build();
-		Person p2 = Person.builder().id(2).name("kim").age(21).build();
-		Person p3 = Person.builder().id(3).name("kwon").age(53).build();
-		Person p4 = Person.builder().id(4).name("shin").age(8).build();
-		list2.add(p1);
-		list2.add(p2);
-		list2.add(p3);
-		list2.add(p4);
 
 		Map<Integer, String> m1 = list2.stream().collect(Collectors.toMap(Person::getId, Person::getName));
 		Map<Integer, String> m2 =
@@ -224,7 +227,21 @@ public class Main {
 		Stream<Double> double1 = Stream.generate(Math::random).limit(100);
 		// 기본타입스트림
 		DoubleStream double2 = new Random().doubles();
+	}
 
+	public void result4() {
+		int[] words = new int[20];
+		list.stream().parallel().forEach(s -> {
+			if (s.length() > 5) {
+				words[s.length()]++; // 다수의 쓰레드가 하나의 배열을 접근하고있다. 경쟁조건오류
+			}
+		});
+		System.out.println(Arrays.toString(words));
+
+		Stream<String> s = list.stream().parallel().unordered().limit(100);
+
+		Map<String, List<Person>> result =
+		        list2.parallelStream().collect(Collectors.groupingByConcurrent(Person::getName));
 	}
 
 	public static void main(String[] args) {
@@ -233,7 +250,8 @@ public class Main {
 //		m.transform();
 //		m.result1();
 //		m.result2();
-		m.result3();
+//		m.result3();
+		m.result4();
 	}
 
 }
