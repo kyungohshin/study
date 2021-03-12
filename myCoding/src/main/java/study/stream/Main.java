@@ -244,6 +244,28 @@ public class Main {
 		        list2.parallelStream().collect(Collectors.groupingByConcurrent(Person::getName));
 	}
 
+	
+	/**
+	 * 	함수형 인터페이스			인자		리턴타입	설명
+	 * -------------------------------------------
+	  	Supplier<T>			없음		T		T 타입 값을 공급
+		Consumer<T>			T		void	T 타입 값을 소비
+		BiConsumer<T, U>	T,U		void	T와 U타입 값을 소비
+		Predicate<T>		T		boolean	boolean 값을 리턴
+		ToIntFunction<T> 	T		int		T 타입을 인자로 받고 int값을 리턴
+		ToLongFunction<T>	T		long	T 타입을 인자로 받고 log값을 리턴
+		ToDoubleFunction<T>	T		double	T 타입을 인자로 받고 double값을 리턴
+		IntFunction<T>		double	R		각각 int을 인자로 받고 R 타입을 리턴
+		LongFunction<T>     int     R       각각 long을 인자로 받고 R 타입을 리턴     
+		DoubleFunction<T>	long	R		각각 double을 인자로 받고 R 타입을 리턴
+		Function<T, R>		T		R		T타입을 인자로 받고 R타입을 리턴
+		BiFunction<T, U, R>	T,U		R		T와 U 타입을 인자로 받고 R타입을 리턴
+		UnaryOperator<T>	T		T		T타입에 적용되는 단항 연산자
+		BinaryOperator<T>	T T		T		T타입에 적용되는 이항 연산자
+	 * 
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.setup();
