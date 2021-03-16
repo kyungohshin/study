@@ -1,25 +1,29 @@
 package algorism.level1;
 
+import java.util.Arrays;
+
 /**
  *
  *
  * @author USER
  * @history
  *          2021. 3. 13. initial creation
+ *          프로그래머스 [K번째 수]
  */
 public class Solution {
 
 	public static int[] solution(int[] array, int[][] commands) {
-		int[] answer = null;
+		int[] answer = new int[commands.length];
 
 		for (int i = 0; i < commands.length; i++) {
 			int[] temp = commands[i];
-			for (int t : temp) {
+			int[] arr = Arrays.copyOfRange(array, temp[0] - 1, temp[1]);
+			Arrays.sort(arr);
 
-			}
+			answer[i] = arr[temp[2] - 1];
 		}
 
-		System.out.println();
+//		System.out.println(Arrays.toString(answer));
 		return answer;
 	}
 
