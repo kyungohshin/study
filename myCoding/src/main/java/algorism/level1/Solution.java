@@ -9,6 +9,8 @@ import java.util.Arrays;
  * @history
  *          2021. 3. 13. initial creation
  *          프로그래머스 [K번째 수]
+ * 
+ *          Arrays.copyOfRange(원본배열, 어디부터, 어디까지) - 원본배열의 일부분을 새로운 배열로 생성
  */
 public class Solution {
 
