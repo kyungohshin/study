@@ -12,7 +12,7 @@ import java.util.Arrays;
  * 
  *          Arrays.copyOfRange(원본배열, 어디부터, 어디까지) - 원본배열의 일부분을 새로운 배열로 생성
  */
-public class Solution {
+public class K번째수 {
 
 	public static int[] solution(int[] array, int[][] commands) {
 		int[] answer = new int[commands.length];
