@@ -1,6 +1,9 @@
 package algorism.level1;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -11,7 +14,8 @@ import java.util.Arrays;
  */
 public class 모의고사 {
 	public static int[] solution(int[] answers) {
-		int[] answer = new int[3];
+		int[] score = new int[3];
+		Map<Integer, Integer> map = new HashMap<>();
 
 		int[] one = { 1, 2, 3, 4, 5 };
 		int[] two = { 2, 1, 2, 3, 2, 4, 2, 5 };
@@ -35,19 +39,37 @@ public class 모의고사 {
 					count++;
 				}
 			}
-			answer[k] = count;
+			score[k] = count;
+			map.put(k + 1, count);
 		}
 
-		System.out.println(Arrays.toString(answer));
+		List<Integer> list = new ArrayList<>();
+		int max = Math.max(score[0], Math.max(score[1], score[2]));
+		for (int i = 0; i < score.length; i++) {
+			if (max == score[i]) {
+				list.add(i);
+			}
+		}
 
-		return answer;
+//		list.add(1);
+//
+//		for (int i = 1; i < score.length; i++) {
+//			if (map.get(list.get(list.size() - 1)) < score[i]) {
+//				list.clear();
+//				list.add(i + 1);
+//			} else if (map.get(list.get(list.size() - 1)) == score[i]) {
+//				list.add(i + 1);
+//			}
+//		}
+
+		return list.stream().mapToInt(i -> i.intValue()).toArray();
 	}
 
 	public static void main(String args[]) {
 //		1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
 //		2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
 //		3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ..
-		int[] array = { 1, 2, 3, 4, 5 };
+		int[] array = { 1, 3, 2, 4, 2 };
 		solution(array);
 	}
 }
