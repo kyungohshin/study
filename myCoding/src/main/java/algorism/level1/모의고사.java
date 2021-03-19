@@ -51,17 +51,6 @@ public class 모의고사 {
 			}
 		}
 
-//		list.add(1);
-//
-//		for (int i = 1; i < score.length; i++) {
-//			if (map.get(list.get(list.size() - 1)) < score[i]) {
-//				list.clear();
-//				list.add(i + 1);
-//			} else if (map.get(list.get(list.size() - 1)) == score[i]) {
-//				list.add(i + 1);
-//			}
-//		}
-
 		return list.stream().mapToInt(i -> i.intValue()).toArray();
 	}
 
