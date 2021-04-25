@@ -49,6 +49,18 @@ public class Main {
 		list2.add(p4);
 	}
 
+	public void trasnform1() {
+		String[] s = { "a", "b" };
+		List<String> list = Arrays.asList(s); // 배열 -> 리스트
+		String[] array = list.toArray(new String[list.size()]); // 리스트 -> 배열
+
+		Stream<String> stream = Arrays.stream(array); // 배열 -> 스트림
+		String[] s2 = stream.toArray(String[]::new); // 스트림 -> 배열
+
+		int[] reserve = { 1, 2, 3 }; // int배열 -> List<Integer>
+		List<Integer> list2 = Arrays.stream(reserve).boxed().collect(Collectors.toList());
+	}
+
 	public void generate() {
 		Stream<String> s0 = list.stream(); // 컬렉션을 스트림으로 만드는방법
 		Stream<String> s1 = list.parallelStream(); // 컬렉션을 스트림으로 만드는방법(병렬)
@@ -171,6 +183,8 @@ public class Main {
 
 		Map<String, Integer> m8 = // 모인 요소들의 합계를 구한다.
 		        list2.stream().collect(Collectors.groupingBy(Person::getName, Collectors.summingInt(Person::getAge)));
+		list2.stream().collect(Collectors.groupingBy(Person::getName,
+		        Collectors.summingInt(t -> t.getAge())));
 
 		Map<String, Optional<Person>> m9 = // 모인 요소들의 최댓값을 구한다.
 		        list2.stream().collect(
@@ -244,25 +258,24 @@ public class Main {
 		        list2.parallelStream().collect(Collectors.groupingByConcurrent(Person::getName));
 	}
 
-	
 	/**
-	 * 	함수형 인터페이스			인자		리턴타입	설명
+	 * 함수형 인터페이스 인자 리턴타입 설명
 	 * -------------------------------------------
-	  	Supplier<T>			없음		T		T 타입 값을 공급
-		Consumer<T>			T		void	T 타입 값을 소비
-		BiConsumer<T, U>	T,U		void	T와 U타입 값을 소비
-		Predicate<T>		T		boolean	boolean 값을 리턴
-		ToIntFunction<T> 	T		int		T 타입을 인자로 받고 int값을 리턴
-		ToLongFunction<T>	T		long	T 타입을 인자로 받고 log값을 리턴
-		ToDoubleFunction<T>	T		double	T 타입을 인자로 받고 double값을 리턴
-		IntFunction<T>		double	R		각각 int을 인자로 받고 R 타입을 리턴
-		LongFunction<T>     int     R       각각 long을 인자로 받고 R 타입을 리턴     
-		DoubleFunction<T>	long	R		각각 double을 인자로 받고 R 타입을 리턴
-		Function<T, R>		T		R		T타입을 인자로 받고 R타입을 리턴
-		BiFunction<T, U, R>	T,U		R		T와 U 타입을 인자로 받고 R타입을 리턴
-		UnaryOperator<T>	T		T		T타입에 적용되는 단항 연산자
-		BinaryOperator<T>	T T		T		T타입에 적용되는 이항 연산자
-	 * 
+	 * Supplier<T> 없음 T T 타입 값을 공급
+	 * Consumer<T> T void T 타입 값을 소비
+	 * BiConsumer<T, U> T,U void T와 U타입 값을 소비
+	 * Predicate<T> T boolean boolean 값을 리턴
+	 * ToIntFunction<T> T int T 타입을 인자로 받고 int값을 리턴
+	 * ToLongFunction<T> T long T 타입을 인자로 받고 log값을 리턴
+	 * ToDoubleFunction<T> T double T 타입을 인자로 받고 double값을 리턴
+	 * IntFunction<T> double R 각각 int을 인자로 받고 R 타입을 리턴
+	 * LongFunction<T> int R 각각 long을 인자로 받고 R 타입을 리턴
+	 * DoubleFunction<T> long R 각각 double을 인자로 받고 R 타입을 리턴
+	 * Function<T, R> T R T타입을 인자로 받고 R타입을 리턴
+	 * BiFunction<T, U, R> T,U R T와 U 타입을 인자로 받고 R타입을 리턴
+	 * UnaryOperator<T> T T T타입에 적용되는 단항 연산자
+	 * BinaryOperator<T> T T T T타입에 적용되는 이항 연산자
+	 *
 	 *
 	 * @param args
 	 */
