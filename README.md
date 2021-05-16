@@ -14,4 +14,4 @@ List...
   
 private
   1. client
-  2. gate.test
+  2. gate.test 콜백추가
