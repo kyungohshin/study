@@ -39,8 +39,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<scope>test</scope>	
 		</dependency>
+		<dependency> <!-- 스프링부트 2.4.0 이상에서 junit4쓰기위해서 추가 -->
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+		</dependency>				
 	</dependencies>
 
 	<build>
