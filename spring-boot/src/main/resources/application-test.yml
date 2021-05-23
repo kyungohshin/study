@@ -1,0 +1,7 @@
+spring:
+  main:
+    web-application-type: NONE
+    allow-bean-definition-overriding: true
+  profiles:
+    active: test
+  
