@@ -29,6 +29,7 @@ public class Main {
 				}
 			});
 		}
+		executorService.shutdown();
 	}
 
 	// 제한없음
@@ -44,6 +45,7 @@ public class Main {
 				}
 			});
 		}
+		executorService.shutdown();
 	}
 
 	// 위의 2개로 간단히 안된다면 상세설정가능
@@ -85,9 +87,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main m = new Main();
+		m.newFixedThreadPool();
 //		m.newCachedThreadPool();
-//		m.newFixedThreadPool();
-		m.LinkedBlockingQueue();
+//		m.LinkedBlockingQueue();
 //		m.SynchronousQueue();
 	}
 
